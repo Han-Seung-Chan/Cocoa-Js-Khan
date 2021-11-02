@@ -34,7 +34,7 @@ function getArea(shape, x, y, z) {
     case 'trapezoid':
       result = getTrapezoid(shape, x, y, z);
       break;
-    default:
+    case 'circleSum':
       let total = 0;
       for (let i = 1; i < y; i++) {
         total = total + i * i * Math.PI;
@@ -43,20 +43,20 @@ function getArea(shape, x, y, z) {
       shape = 'circle';
       array.push(shape);
       break;
+    default:
+      console.log('도형을 제대로 입력하세요');
+      return;
   }
 }
 
 function printExecutionSequence() {
-  let str = '';
-  for (let index = 0; index < array.length; index++) {
-    const shape = array[index];
-    str += shape + ', ';
-  }
-  console.log(str.substring(0, str.length - 2));
+  const printLog = array.join(', ');
+  console.log(printLog);
 }
 
 getCircle();
-getCircle();
+getRect();
 getArea('circle', 2);
 getArea('rect', 2, 3);
 printExecutionSequence();
+getArea('aa', 2);
