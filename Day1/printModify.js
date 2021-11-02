@@ -1,7 +1,7 @@
 const array = [];
 
 function getCircle(shape = 'circle', radius = 5) {
-  const result = radius * radius * 3.14;
+  const result = radius * radius * Math.PI;
   array.push(shape, result);
   return result;
 }
@@ -27,7 +27,7 @@ function getArea(shape, x, y, z) {
   let result = 0;
 
   if (shape === 'circle' && y !== undefined) {
-    shape = 'area';
+    shape = 'circleSum';
   }
   switch (shape) {
     case 'circle':
@@ -42,7 +42,7 @@ function getArea(shape, x, y, z) {
     default:
       let total = 0;
       for (let i = 1; i < y; i++) {
-        total = total + i * i * 3.14;
+        total = total + i * i * Math.PI;
       }
       result = total;
       shape = 'circle';

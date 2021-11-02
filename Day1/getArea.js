@@ -9,7 +9,7 @@ function getArea(name, x, y, z) {
     return '원 넓이 = ' + x * x * Math.PI;
   } else {
     let total = 0;
-    for (let i = 1; i < c; i++) {
+    for (let i = 1; i < y; i++) {
       total = total + i * i * Math.PI;
     }
     return '원 넓이의 합 = ' + total;

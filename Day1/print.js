@@ -2,7 +2,7 @@ const array = [];
 
 function getCircle(shape = 'circle', radius = 5) {
   array.push(shape);
-  return radius * radius * 3.14;
+  return radius * radius * Math.PI;
 }
 
 function getRect(shape = 'rect', width = 5, height = 10) {
@@ -21,10 +21,8 @@ function getTrapezoid(
 }
 
 function getArea(shape, x, y, z) {
-  let result = 0;
-
   if (shape === 'circle' && y !== undefined) {
-    shape = 'area';
+    shape = 'circleSum';
   }
   switch (shape) {
     case 'circle':
@@ -39,15 +37,13 @@ function getArea(shape, x, y, z) {
     default:
       let total = 0;
       for (let i = 1; i < y; i++) {
-        total = total + i * i * 3.14;
+        total = total + i * i * Math.PI;
       }
       result = total;
       shape = 'circle';
       array.push(shape);
       break;
   }
-
-  return result;
 }
 
 function printExecutionSequence() {
