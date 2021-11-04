@@ -8,9 +8,7 @@ function solution(binary, number, player, dong) {
     let change = value.toString(binary).split('');
     answer.push(...change);
   }
-  const result = answer.filter(function (v, index) {
-    return (index + 1) % player === dong;
-  });
+  const result = answer.filter((v, index) => (index + 1) % player === dong);
   console.log(result);
 }
 //매개변수 (진법, 몇번, 몇명, 길동이 차례)
