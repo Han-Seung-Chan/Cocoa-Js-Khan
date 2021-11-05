@@ -14,24 +14,22 @@ function findAverageAll(grades) {
     const total = scores.reduce((keepSavingValue, currentValue) => {
       return keepSavingValue + currentValue;
     });
-    result.push((total / scores.length).toFixed(2));
+    console.log(total);
+
+    result.push(parseInt(total / scores.length));
   });
   return result;
 }
 console.log('모든 학생 평균 : ' + findAverageAll(grades));
 
 function findAverageMax(grades) {
-  let maxResult = [];
-  grades.forEach((scores) => {
-    const sum = scores.reduce((cumulativeValue, presentValue) => {
-      return cumulativeValue + presentValue;
-    });
-    maxResult.push((sum / scores.length).toFixed(2));
-    maxResult.sort((a, b) => {
-      return b - a;
-    });
+  const maxScore = grades.map((scores) => {
+    return Math.max(...scores);
   });
-  return maxResult[0];
+  const maxResult = maxScore.reduce((cumulativeValue, presentValue) => {
+    return cumulativeValue + presentValue;
+  });
+  return maxResult / maxScore.length;
 }
 
-console.log('가장 점수가 높은 학생 평균 : ' + findAverageMax(grades));
+console.log('모든학생 최고점수의 평균 : ' + findAverageMax(grades));
