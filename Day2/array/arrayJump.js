@@ -1,4 +1,4 @@
-//"문자열".charCodeAt([문자열 자릿수]);
+//ASCII코드 값 사용 for 문 사용
 function filterId() {
   const id = ['crong!@#', 'honux5', 'sarah#', 'hea3d', 'zello', '5lucas'];
   let withoutNumber = []; //숫자 제거 한 문자 들어가는 배열
