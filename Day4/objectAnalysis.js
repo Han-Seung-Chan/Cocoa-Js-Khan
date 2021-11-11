@@ -19,10 +19,9 @@ function run(data) {
         if (bracketArr.length !== 0) {
           bracketArr.pop();
         } else {
-          console.log('닫는 괄호가 일치하지 않습니다');
+          console.log('괄호가 일치하지 않습니다');
           return;
         }
-        bracketCount++;
         break;
       case 44: // ','
         restCount++;
@@ -30,7 +29,7 @@ function run(data) {
     }
   }
   if (bracketArr.length !== 0) {
-    console.log('닫는 괄호가 일치하지 않습니다');
+    console.log('괄호가 일치하지 않습니다');
     return;
   }
   printAnalysis(data, restCount, bracketCount);
@@ -42,10 +41,8 @@ run(data3);
 run(data4);
 
 function printAnalysis(data, restCount, bracketCount) {
-  const total = data.length - restCount - bracketCount;
+  const total = data.length - restCount - bracketCount - bracketCount;
   console.log(
-    `배열의 중첩된 깊이 수준은 ${
-      bracketCount / 2
-    } 이며, 총 ${total} 개의 원소가 포함되어 있습니다.`
+    `배열의 중첩된 깊이 수준은 ${bracketCount} 이며, 총 ${total} 개의 원소가 포함되어 있습니다.`
   );
 }
