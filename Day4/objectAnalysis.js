@@ -4,7 +4,7 @@ const data4 = '[1,2,[3,4]]],[5,[6]]'; // 괄호 개수 불일치 (닫는괄호 �
 const data3 = '][1,2,[3,4,[5],[6]]'; // 시작부터 닫음
 
 function run(data) {
-  let bracketArr = [];
+  const bracketArr = [];
   let bracketCount = 0;
   let restCount = 0;
 
