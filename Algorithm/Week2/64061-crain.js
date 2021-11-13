@@ -3,20 +3,19 @@ function solution(board, moves) {
   const dollStore = [];
 
   for (let verticalPosition of moves) {
+    verticalPosition--;
     let horizontalPosition = 0;
 
-    for (let i = 0; i < board.length; i++) {
+    while (horizontalPosition < board.length) {
       if (board[horizontalPosition][verticalPosition] !== 0) {
         const pick = board[horizontalPosition][verticalPosition];
         board[horizontalPosition][verticalPosition] = 0;
 
         if (pick === dollStore[dollStore.length - 1]) {
           dollStore.pop();
-          count += 1;
-        } else {
-          dollStore.push(pick);
-        }
-        continue;
+          count += 2;
+        } else dollStore.push(pick);
+        break;
       }
       horizontalPosition++;
     }
