@@ -21,18 +21,17 @@ function getStandardDeviation(score) {
 
 //70 ~ 80점 사이의 점수를 지닌 비율 구하기
 function getRatio(minScore, maxScore) {
-  const average = getMean(data);
+  const mean = getMean(data);
   const standardDeviation = getStandardDeviation(data);
 
-  let seventyPoints = Math.abs(minScore - average) / standardDeviation;
-  let eightyPoints = Math.abs(maxScore - average) / standardDeviation;
-
-  seventyPoints = seventyPoints.toFixed(2);
-  eightyPoints = eightyPoints.toFixed(2);
+  let seventyPoints = Math.abs((minScore - mean) / standardDeviation).toFixed(
+    2
+  );
+  let eightyPoints = Math.abs((maxScore - mean) / standardDeviation).toFixed(2);
 
   console.log(seventyPoints, eightyPoints);
 
-  //1.3 = 0.34849  0.28 = 0.11026
+  //1.03 = 0.34849  0.28 = 0.11026
   const result = (0.34849 + 0.11026) * 100;
   return result;
 }
