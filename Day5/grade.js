@@ -2,35 +2,27 @@ const data = [
   89.23, 82.03, 71.56, 78.82, 85.05, 84.44, 67.53, 71.7, 77.97, 73.77, 84.25,
   67.01, 73.78, 64.19, 89.89, 90.32, 73.21, 75.35, 83.22, 74.01,
 ];
+//평균 편차 분산 표준편차
 function getMean(score) {
-  let result = getAverage(score);
-  return result;
+  let result =
+    score.reduce((sumValue, currentValue) => sumValue + currentValue) /
+    score.length;
+  return result.toFixed(2);
 }
 
 function getStandardDeviation(score) {
   //평균 구하기
-  let result = getAverage(score);
-
+  let result = getMean(score);
   //분산 구하기
   let dispersion = getDispersion(score, result);
-
   //분산에다가 루트 하면 표준편차
   let StandardDeviation = Math.sqrt(Number(dispersion));
   return StandardDeviation.toFixed(2);
 }
 
 //----------함수 실행----------
-console.log(getMean(data));
-console.log(getStandardDeviation(data));
-
-//----------평균 구하기----------
-function getAverage(score) {
-  const answer = score.reduce((sumValue, currentValue) => {
-    return sumValue + currentValue;
-  });
-  let result = answer / score.length;
-  return result.toFixed(2);
-}
+console.log(`평균 점수 : ${getMean(data)}`);
+console.log(`표준편차 ${getStandardDeviation(data)}`);
 
 //----------분산 구하기----------
 function getDispersion(score, result) {
@@ -207,11 +199,9 @@ function getZ(data, score) {
 //정규분포에서 어디에 있는지 찾기
 function getZTableRate(data, score) {
   let z = getZ(data, score);
-  let xIndex;
-  let yIndex;
 
-  xIndex = Number(String(z).slice(0, 3));
-  yIndex = Number(String(z).slice(3, 4));
+  let xIndex = Number(String(z).slice(0, 3));
+  let yIndex = Number(String(z).slice(3, 4));
 
   return zIndex[`${xIndex}`][yIndex];
 }
@@ -219,7 +209,8 @@ function getZTableRate(data, score) {
 function calculateRate(data, min, max) {
   min = getZTableRate(data, min);
   max = getZTableRate(data, max);
+
   return `${(min + max - 1).toFixed(2) * 100}%`;
 }
 
-console.log(calculateRate(data, 70, 80));
+console.log(`70점 ~ 80점 학생 비율 : ${calculateRate(data, 70, 80)}`);
