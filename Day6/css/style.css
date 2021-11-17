@@ -1,0 +1,58 @@
+* {
+  font-family: 'Black Han Sans', sans-serif;
+  text-align: center;
+}
+body,
+#writeForm input {
+  color: #fedc00;
+  background: black;
+  font-size: 30px;
+  border-color: black;
+  border-style: hidden;
+}
+
+#todoList li {
+  list-style: none;
+  padding-left: 0px;
+}
+#doneList li {
+  list-style: none;
+  padding-left: 0px;
+}
+#todoList li span {
+  color: #fedc00;
+  font-size: 30px;
+}
+#doneList li span {
+  color: #fedc00;
+  font-size: 30px;
+}
+
+#todoList li #TodoButtonO {
+  font-size: 20px;
+  position: relative;
+  bottom: 3px;
+  left: 30px;
+  margin: 10px;
+  background-color: #fedc00;
+}
+#todoList li #TodoButtonX {
+  font-size: 20px;
+  position: relative;
+  bottom: 3px;
+  left: 30px;
+  margin: 10px;
+  background-color: #fedc00;
+}
+#doneList li #DoneButtonX {
+  font-size: 20px;
+  position: relative;
+  bottom: 5px;
+  left: 30px;
+  margin: 10px;
+  background-color: #fedc00;
+}
+#doneList li {
+  color: #ff0000;
+  text-decoration: line-through;
+}
