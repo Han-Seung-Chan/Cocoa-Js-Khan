@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Black+Han+Sans&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <title>todo</title>
+</head>
+    <div>
+        <hr size="3" color="#fedc00" >
+            <h2>To Do List</h2>
+        <hr size="3" color="#fedc00" >
+        <br>
+    </div>
+    <div id= writeTodo>
+            <form id= "writeForm">
+                <input
+                required
+                type ="text"
+                placeholder="New todo"
+                autocomplete="off"
+                style= font-size:20pt
+                style="border:0 solid black"
+                />
+                <hr size="3" color="#fedc00" width="200px">
+            </form>
+    </div>
+    <br>
+    <div id = "Todo">
+        <h3 id = "titleTodo">this is you have to do!</h3>
+        <ul id= "todoList"></ul>
+    </div>
+    <div id = "Done">
+        <h3 id = "titleDone">you have done your job!</h3>
+        <ul id= "doneList"></ul>
+    </div>
+
+<script src = "js/todo.js"></script>
+
+</body>
+</html>
