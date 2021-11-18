@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>todo</title>
 </head>
+<body onload="printClock()">
     <div>
         <hr size="3" color="#fedc00" >
             <h2>To Do List</h2>
@@ -20,23 +21,20 @@
                 type ="text"
                 placeholder="New todo"
                 autocomplete="off"
-                style= font-size:20pt
-                style="border:0 solid black"
                 />
                 <hr size="3" color="#fedc00" width="200px">
             </form>
-    </div>
-    <br>
+        </div>
+            <div id= "clock"> </div>
     <div id = "Todo">
-        <h3 id = "titleTodo">this is you have to do!</h3>
+        <h3 id = "titleTodo">you have to do this task!</h3>
         <ul id= "todoList"></ul>
     </div>
+    <br>
     <div id = "Done">
-        <h3 id = "titleDone">you have done your job!</h3>
+        <h3 id = "titleDone" class="hidden">this is the task you completed:)</h3>
         <ul id= "doneList"></ul>
     </div>
-
 <script src = "js/todo.js"></script>
-
 </body>
 </html>
