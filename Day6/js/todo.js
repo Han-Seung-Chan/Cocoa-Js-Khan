@@ -3,46 +3,65 @@ const writeFormTag = document.querySelector('#writeForm');
 const todoInputTag = document.querySelector('#writeForm input');
 const todoListTag = document.querySelector('#todoList');
 const doneListTag = document.querySelector('#doneList');
+const hiddenTag = document.querySelector('.hidden');
 
-let toDoListArray = [];
+let todoListArray = [];
 let doneTodoArray = [];
-class Todo {
-  constructor()
-  //==========ToDo에서 Done 으로 가는거==========
-  function goDoneList(event) {
-    const todoList = event.target.parentElement;
-    doneTodoArray = toDoListArray.filter(
-      (done) => done.id === Number(todoList.id)
-      );
-      printDoneList(doneTodoArray);
-      todoList.remove();
-    }
-    
-    //==========todo리스트 삭제할 때==========
-    function deleteTodo(event) {
-      const todoList = event.target.parentElement;
-      todoList.remove();
-      toDoListArray = toDoListArray.filter(
-        (toDo) => toDo.id !== Number(todoList.id)
-        );
-      }
-      //==========done리스트 삭제할 때==========
-      function deleteDone(event) {
-        const doneList = event.target.parentElement;
-        doneList.remove();
-        console.log(doneList.id);
-        
-        doneTodoArray = doneTodoArray.filter(
-    (done) => done.id !== Number(doneList.id)
+
+//==========Todo리스트 삭제할 때==========
+function deleteTodo(event) {
+  const todoList = event.target.parentElement;
+  todoList.remove();
+  todoListArray = todoListArray.filter(
+    (toDo) => toDo.id !== Number(todoList.id)
   );
 }
-//==========완료했을 때==========
+//==========Done리스트 삭제할 때==========
+function deleteDone(event) {
+  const doneList = event.target.parentElement;
+  doneList.remove();
+  doneTodoArray = doneTodoArray.filter(
+    (done) => done.id !== Number(doneList.id)
+  );
+  if (doneTodoArray.length === 0) {
+    hiddenTag.style.display = 'none';
+  }
+}
+function deleteDone(event) {
+  const doneList = event.target.parentElement;
+  doneList.remove();
+  doneTodoArray = doneTodoArray.filter(
+    (done) => done.id !== Number(doneList.id)
+  );
+  if (doneTodoArray.length === 0) {
+    hiddenTag.style.display = 'none';
+  }
+}
+
+//==========Todo에서 Done 으로 가는거==========
+function goDoneList(event) {
+  hiddenTag.style.display = 'block';
+  const todoList = event.target.parentElement;
+  doneTodoArray = todoListArray.filter(
+    (todo) => todo.id === Number(todoList.id)
+  );
+  printDoneList(doneTodoArray);
+  todoList.remove();
+}
+
+//==========Done에서 Todo로 가는거==========
+function comebackDone() {
+  alert('이제 만들 예정!!');
+}
+//==========list를 완료했을 때==========
 function printDoneList(newDone) {
   const list = createDoneListTag(newDone);
   const span = createDoneSpanTag(newDone);
-  const button = createDoneButtonTag();
+  const comebackButton = createComebackButtonTag();
+  const deleteButton = createDoneButtonTag();
   list.appendChild(span);
-  list.appendChild(button);
+  list.appendChild(comebackButton);
+  list.appendChild(deleteButton);
   doneListTag.appendChild(list);
 }
 function createDoneListTag(newDone) {
@@ -55,6 +74,13 @@ function createDoneSpanTag(newDone) {
   span.innerText = newDone[0].text;
   return span;
 }
+function createComebackButtonTag() {
+  const button = document.createElement('button');
+  button.id = 'DoneComebackButton';
+  button.innerText = '▲';
+  button.addEventListener('click', comebackDone);
+  return button;
+}
 function createDoneButtonTag() {
   const button = document.createElement('button');
   button.id = 'DoneButtonX';
@@ -63,8 +89,8 @@ function createDoneButtonTag() {
   return button;
 }
 
-//==========새로운것이 생성될 때==========
-function paintToDo(newTodo) {
+//==========새로운것이 Todo에 생성될 때==========
+function printToDo(newTodo) {
   const list = createTodoListTag(newTodo);
   const span = createTodoSpanTag(newTodo);
   const completeButton = createCompleteButtonTag();
@@ -91,7 +117,6 @@ function createCompleteButtonTag() {
   buttonO.addEventListener('click', goDoneList);
   return buttonO;
 }
-
 function createTodoDeleteButtonTag() {
   const buttonX = document.createElement('button');
   buttonX.id = 'TodoButtonX';
@@ -101,18 +126,26 @@ function createTodoDeleteButtonTag() {
 }
 
 //==========submit 되면 실행==========
-function handleToDoSubmit(event) {
+function submitList(event) {
   event.preventDefault();
   const newTodo = todoInputTag.value;
   todoInputTag.value = '';
   const newTodoObj = {
     text: newTodo,
-    id: Date.now(),
+    id: Math.random(),
   };
-  toDoListArray.push(newTodoObj);
-  paintToDo(newTodoObj);
-}
+  console.log(newTodoObj.id);
+
+  todoListArray.push(newTodoObj);
+  printToDo(newTodoObj);
 }
 
 //==========처음시작==========
-writeFormTag.addEventListener('submit', handleToDoSubmit);
+writeFormTag.addEventListener('submit', submitList);
+
+//==========시계==========
+function printClock() {
+  const clockTag = document.getElementById('clock');
+  clockTag.innerText = new Date().toLocaleString();
+  setTimeout('printClock()', 1000);
+}
