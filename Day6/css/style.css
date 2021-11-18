@@ -7,10 +7,12 @@ body,
   color: #fedc00;
   background: black;
   font-size: 30px;
-  border-color: black;
-  border-style: hidden;
+  border: 0px black;
 }
-
+input:active,
+input:focus {
+  outline: none;
+}
 #todoList li {
   list-style: none;
   padding-left: 0px;
@@ -52,7 +54,24 @@ body,
   margin: 10px;
   background-color: #fedc00;
 }
+#doneList li #DoneComebackButton {
+  font-size: 16px;
+  position: relative;
+  bottom: 5px;
+  left: 30px;
+  margin: 10px;
+  background-color: #fedc00;
+}
 #doneList li {
   color: #ff0000;
   text-decoration: line-through;
+}
+.hidden {
+  display: none;
+}
+#clock {
+  margin-top: 2%;
+  color: #fedc00;
+  font-size: 35px;
+  text-align: center;
 }
