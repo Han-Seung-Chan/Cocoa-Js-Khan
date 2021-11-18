@@ -1,14 +1,12 @@
-//class로 만드는게 익숙하지 않다 일단 함수로 만들자
-const writeFormTag = document.querySelector('#writeForm');
-const todoInputTag = document.querySelector('#writeForm input');
-const todoListTag = document.querySelector('#todoList');
-const doneListTag = document.querySelector('#doneList');
-const hiddenTag = document.querySelector('.hidden');
+const $writeForm = document.querySelector('#writeForm');
+const $todoInput = document.querySelector('#writeForm input');
+const $todoList = document.querySelector('#todoList');
+const $doneList = document.querySelector('#doneList');
+const $hidden = document.querySelector('.hidden');
 
 let todoListArray = [];
 let doneTodoArray = [];
 
-//==========Todo리스트 삭제할 때==========
 function deleteTodo(event) {
   const todoList = event.target.parentElement;
   todoList.remove();
@@ -16,134 +14,151 @@ function deleteTodo(event) {
     (toDo) => toDo.id !== Number(todoList.id)
   );
 }
-//==========Done리스트 삭제할 때==========
 function deleteDone(event) {
   const doneList = event.target.parentElement;
   doneList.remove();
   doneTodoArray = doneTodoArray.filter(
     (done) => done.id !== Number(doneList.id)
   );
-  if (doneTodoArray.length === 0) {
-    hiddenTag.style.display = 'none';
-  }
+  hiddenClass();
 }
-function deleteDone(event) {
-  const doneList = event.target.parentElement;
-  doneList.remove();
-  doneTodoArray = doneTodoArray.filter(
-    (done) => done.id !== Number(doneList.id)
-  );
+
+function hiddenClass() {
   if (doneTodoArray.length === 0) {
-    hiddenTag.style.display = 'none';
+    $hidden.style.display = 'none';
   }
 }
 
-//==========Todo에서 Done 으로 가는거==========
+function comebackDone(event) {
+  let temporaryStorage = [];
+  const doneList = event.target.parentElement;
+  temporaryStorage = doneTodoArray.filter(
+    (done) => done.id === Number(doneList.id)
+  );
+  todoListArray.push(temporaryStorage[0]);
+
+  doneTodoArray = doneTodoArray.filter(
+    (done) => done.id !== Number(doneList.id)
+  );
+
+  goTodoList(todoListArray);
+  doneList.remove();
+}
+
+function goTodoList(newTodo) {
+  const listTag = createDoneList(newTodo);
+  const spanTag = createDoneSpan(newTodo);
+  const completeButtonTag = createCompleteButton();
+  const deleteButtonTag = createTodoDeleteButton();
+  listTag.appendChild(spanTag);
+  listTag.appendChild(completeButtonTag);
+  listTag.appendChild(deleteButtonTag);
+  $todoList.appendChild(listTag);
+  hiddenClass();
+}
+
 function goDoneList(event) {
-  hiddenTag.style.display = 'block';
+  let temporaryStorage = [];
+  $hidden.style.display = 'block';
+
   const todoList = event.target.parentElement;
-  doneTodoArray = todoListArray.filter(
+  temporaryStorage = todoListArray.filter(
     (todo) => todo.id === Number(todoList.id)
   );
+  doneTodoArray.push(temporaryStorage[0]);
+
+  todoListArray = todoListArray.filter(
+    (todo) => todo.id !== Number(todoList.id)
+  );
+
   printDoneList(doneTodoArray);
   todoList.remove();
 }
 
-//==========Done에서 Todo로 가는거==========
-function comebackDone() {
-  alert('이제 만들 예정!!');
-}
-//==========list를 완료했을 때==========
 function printDoneList(newDone) {
-  const list = createDoneListTag(newDone);
-  const span = createDoneSpanTag(newDone);
-  const comebackButton = createComebackButtonTag();
-  const deleteButton = createDoneButtonTag();
-  list.appendChild(span);
-  list.appendChild(comebackButton);
-  list.appendChild(deleteButton);
-  doneListTag.appendChild(list);
+  const listTag = createDoneList(newDone);
+  const spanTag = createDoneSpan(newDone);
+  const comebackButtonTag = createComebackButton();
+  const deleteButtonTag = createDoneButton();
+  listTag.appendChild(spanTag);
+  listTag.appendChild(comebackButtonTag);
+  listTag.appendChild(deleteButtonTag);
+  $doneList.appendChild(listTag);
 }
-function createDoneListTag(newDone) {
+function createDoneList(newDone) {
   const list = document.createElement('li');
-  list.id = newDone[0].id;
+  list.id = newDone[newDone.length - 1].id;
   return list;
 }
-function createDoneSpanTag(newDone) {
+function createDoneSpan(newDone) {
   const span = document.createElement('span');
-  span.innerText = newDone[0].text;
+  span.innerText = newDone[newDone.length - 1].text;
   return span;
 }
-function createComebackButtonTag() {
+function createComebackButton() {
   const button = document.createElement('button');
   button.id = 'DoneComebackButton';
-  button.innerText = '▲';
+  button.innerText = '↩️';
   button.addEventListener('click', comebackDone);
   return button;
 }
-function createDoneButtonTag() {
+function createDoneButton() {
   const button = document.createElement('button');
   button.id = 'DoneButtonX';
-  button.innerText = 'X';
+  button.innerText = '🗑️';
   button.addEventListener('click', deleteDone);
   return button;
 }
 
-//==========새로운것이 Todo에 생성될 때==========
 function printToDo(newTodo) {
-  const list = createTodoListTag(newTodo);
-  const span = createTodoSpanTag(newTodo);
-  const completeButton = createCompleteButtonTag();
-  const deleteButton = createTodoDeleteButtonTag();
-  list.appendChild(span);
-  list.appendChild(completeButton);
-  list.appendChild(deleteButton);
-  todoListTag.appendChild(list);
+  const listTag = createTodoList(newTodo);
+  const spanTag = createTodoSpan(newTodo);
+  const completeButtonTag = createCompleteButton();
+  const deleteButtonTag = createTodoDeleteButton();
+  listTag.appendChild(spanTag);
+  listTag.appendChild(completeButtonTag);
+  listTag.appendChild(deleteButtonTag);
+  $todoList.appendChild(listTag);
 }
-function createTodoListTag(newTodo) {
+function createTodoList(newTodo) {
   const list = document.createElement('li');
   list.id = newTodo.id;
   return list;
 }
-function createTodoSpanTag(newTodo) {
+function createTodoSpan(newTodo) {
   const span = document.createElement('span');
   span.innerText = newTodo.text;
   return span;
 }
-function createCompleteButtonTag() {
+function createCompleteButton() {
   const buttonO = document.createElement('button');
   buttonO.id = 'TodoButtonO';
-  buttonO.innerText = 'O';
+  buttonO.innerText = '🗸';
   buttonO.addEventListener('click', goDoneList);
   return buttonO;
 }
-function createTodoDeleteButtonTag() {
+function createTodoDeleteButton() {
   const buttonX = document.createElement('button');
   buttonX.id = 'TodoButtonX';
-  buttonX.innerText = 'X';
+  buttonX.innerText = '🗑️';
   buttonX.addEventListener('click', deleteTodo);
   return buttonX;
 }
 
-//==========submit 되면 실행==========
-function submitList(event) {
+function submitListHandler(event) {
   event.preventDefault();
-  const newTodo = todoInputTag.value;
-  todoInputTag.value = '';
+  const newTodo = $todoInput.value;
+  $todoInput.value = '';
   const newTodoObj = {
     text: newTodo,
-    id: Math.random(),
+    id: Math.random() * 10,
   };
-  console.log(newTodoObj.id);
-
   todoListArray.push(newTodoObj);
   printToDo(newTodoObj);
 }
 
-//==========처음시작==========
-writeFormTag.addEventListener('submit', submitList);
+$writeForm.addEventListener('submit', submitListHandler);
 
-//==========시계==========
 function printClock() {
   const clockTag = document.getElementById('clock');
   clockTag.innerText = new Date().toLocaleString();
