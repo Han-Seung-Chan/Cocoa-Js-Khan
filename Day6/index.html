@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="css/style.css">
     <title>todo list</title>
 </head>
-<body onload="printClock()">
-    <div>
+<body>
+    <header>
         <hr size="3" color="#fedc00" >
             <h2>To Do List</h2>
         <hr size="3" color="#fedc00" >
+    </header>
         <br>
-    </div>
-    <div id= writeTodo>
+    <nav id= writeTodo>
             <form id= "writeForm">
                 <input
                 required
@@ -23,17 +23,17 @@
                 />
                 <hr size="3" color="#fedc00" width="200px">
             </form>
-        </div>
             <div id= "clock"> </div>
-    <div id = "Todo">
+        </nav>
+    <main id = "Todo">
         <h3 id = "titleTodo">you have to do this task!</h3>
         <ul id= "todoList"></ul>
-    </div>
+    </main>
     <br>
-    <div id = "Done">
+    <main id = "Done">
         <h3 id = "titleDone" class="hidden">this is the task you completed:)</h3>
         <ul id= "doneList"></ul>
-    </div>
+    </main>
 <script src = "js/todo.js"></script>
 </body>
 </html>
