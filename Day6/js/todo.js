@@ -113,11 +113,11 @@ function createDoneButton() {
 function printToDo(newTodo) {
   const listTag = createTodoList(newTodo);
   const spanTag = createTodoSpan(newTodo);
-  const completeButtonTag = createCompleteButton();
-  const deleteButtonTag = createTodoDeleteButton();
+  const completeButton = createCompleteButton();
+  const deleteButton = createTodoDeleteButton();
   listTag.appendChild(spanTag);
-  listTag.appendChild(completeButtonTag);
-  listTag.appendChild(deleteButtonTag);
+  listTag.appendChild(completeButton);
+  listTag.appendChild(deleteButton);
   $todoList.appendChild(listTag);
 }
 function createTodoList(newTodo) {
@@ -164,3 +164,4 @@ function printClock() {
   clockTag.innerText = new Date().toLocaleString();
   setTimeout('printClock()', 1000);
 }
+printClock();
