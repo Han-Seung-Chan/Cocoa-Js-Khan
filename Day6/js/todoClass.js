@@ -23,6 +23,7 @@ class TodoListController {
   printToDo = (newTodo) => {
     const todoListTag = this.createTodoList(newTodo);
     this.createSpanTag(newTodo, todoListTag);
+    this.createTodoModifyInputButton(todoListTag);
     this.createCompleteButton(todoListTag);
     this.createTodoDeleteButton(todoListTag);
   };
@@ -32,10 +33,19 @@ class TodoListController {
     this.$todoList.appendChild(todoListTag);
     return todoListTag;
   };
+
   createSpanTag = (newTodo, todoListTag) => {
     const spanTag = document.createElement('span');
     spanTag.innerText = newTodo.text;
     todoListTag.appendChild(spanTag);
+  };
+
+  createTodoModifyInputButton = (todoListTag) => {
+    const modifyButton = document.createElement('button');
+    modifyButton.id = 'modifyButton';
+    modifyButton.innerText = '✏️';
+    todoListTag.appendChild(modifyButton);
+    modifyButton.addEventListener('click', this.modifyList);
   };
 
   createTodoDeleteButton = (todoListTag) => {
@@ -56,7 +66,7 @@ class TodoListController {
   createCompleteButton = (todoListTag) => {
     const completeButton = document.createElement('button');
     completeButton.id = 'TodoButtonO';
-    completeButton.innerText = '🗸';
+    completeButton.innerText = '✔️';
     todoListTag.appendChild(completeButton);
     completeButton.addEventListener('click', this.goDoneList);
   };
@@ -78,19 +88,33 @@ class TodoListController {
     const DoneListTag = this.createDoneList(doneValue);
     this.$doneList.appendChild(DoneListTag);
     this.createDoneSpanTag(doneValue, DoneListTag);
+    this.createDoneModifyInputButton(DoneListTag);
     this.createComebackButton(DoneListTag);
     this.createDoneDeleteButton(DoneListTag);
   };
+
   createDoneList = (doneValue) => {
     const DoneListTag = document.createElement('li');
     DoneListTag.id = doneValue[doneValue.length - 1].id;
     return DoneListTag;
   };
+
   createDoneSpanTag = (doneValue, listTag) => {
     const doneSpanTag = document.createElement('span');
     doneSpanTag.innerText = doneValue[doneValue.length - 1].text;
     listTag.appendChild(doneSpanTag);
   };
+
+  createDoneModifyInputButton = (DoneListTag) => {
+    //✏️
+    const modifyButton = document.createElement('button');
+    modifyButton.id = 'modifyButton';
+    modifyButton.innerText = '✏️';
+    DoneListTag.appendChild(modifyButton);
+    modifyButton.addEventListener('click', this.modifyList);
+  };
+
+  modifyList = (e) => {};
   createComebackButton = (DoneListTag) => {
     const comebackButton = document.createElement('button');
     comebackButton.id = 'DoneComebackButton';
@@ -98,6 +122,7 @@ class TodoListController {
     DoneListTag.appendChild(comebackButton);
     comebackButton.addEventListener('click', this.comebackDone);
   };
+
   createDoneDeleteButton = (DoneListTag) => {
     const DoneDeleteButton = document.createElement('button');
     DoneDeleteButton.id = 'DoneButtonX';
@@ -105,6 +130,7 @@ class TodoListController {
     DoneListTag.appendChild(DoneDeleteButton);
     DoneDeleteButton.addEventListener('click', this.deleteDone);
   };
+
   deleteDone = (e) => {
     const selectedList = e.target.parentElement;
     selectedList.remove();
@@ -133,13 +159,13 @@ class TodoListController {
     const DoneListTag = this.createDoneList(doneValue);
     this.$todoList.appendChild(DoneListTag);
     this.createDoneSpanTag(doneValue, DoneListTag);
+    this.createDoneModifyInputButton(DoneListTag);
     this.createCompleteButton(DoneListTag);
     this.createTodoDeleteButton(DoneListTag);
     this.hiddenClass();
   };
 
   hiddenClass() {
-    console.log(this.doneTodoArray);
     if (this.doneTodoArray.length === 0) {
       this.$hidden.style.display = 'none';
     }
