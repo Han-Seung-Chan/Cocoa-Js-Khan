@@ -2,12 +2,16 @@ class TodoListController {
   constructor() {
     this.todoListArray = [];
     this.doneTodoArray = [];
+    this.$todoInput = document.querySelector('#writeForm input');
+    this.$todoList = document.querySelector('#todoList');
+    this.$doneList = document.querySelector('#doneList');
+    this.$hidden = document.querySelector('.hidden');
   }
 
   submitListHandler = (e) => {
     e.preventDefault();
-    const newTodo = $todoInput.value;
-    $todoInput.value = '';
+    const newTodo = this.$todoInput.value;
+    this.$todoInput.value = '';
     const newTodoObj = {
       text: newTodo,
       id: Math.random(),
@@ -25,7 +29,7 @@ class TodoListController {
   createTodoList = (newTodo) => {
     const todoListTag = document.createElement('li');
     todoListTag.id = newTodo.id;
-    $todoList.appendChild(todoListTag);
+    this.$todoList.appendChild(todoListTag);
     return todoListTag;
   };
   createSpanTag = (newTodo, todoListTag) => {
@@ -57,7 +61,7 @@ class TodoListController {
     completeButton.addEventListener('click', this.goDoneList);
   };
   goDoneList = (e) => {
-    $hidden.style.display = 'block';
+    this.$hidden.style.display = 'block';
     const selectedTodoList = e.target.parentElement;
     const temporaryStorage = this.todoListArray.filter(
       (todo) => todo.id === Number(selectedTodoList.id)
@@ -72,7 +76,7 @@ class TodoListController {
 
   printDoneList = (doneValue) => {
     const DoneListTag = this.createDoneList(doneValue);
-    $doneList.appendChild(DoneListTag);
+    this.$doneList.appendChild(DoneListTag);
     this.createDoneSpanTag(doneValue, DoneListTag);
     this.createComebackButton(DoneListTag);
     this.createDoneDeleteButton(DoneListTag);
@@ -127,7 +131,7 @@ class TodoListController {
 
   goTodoList = (doneValue) => {
     const DoneListTag = this.createDoneList(doneValue);
-    $todoList.appendChild(DoneListTag);
+    this.$todoList.appendChild(DoneListTag);
     this.createDoneSpanTag(doneValue, DoneListTag);
     this.createCompleteButton(DoneListTag);
     this.createTodoDeleteButton(DoneListTag);
@@ -137,14 +141,10 @@ class TodoListController {
   hiddenClass() {
     console.log(this.doneTodoArray);
     if (this.doneTodoArray.length === 0) {
-      $hidden.style.display = 'none';
+      this.$hidden.style.display = 'none';
     }
   }
 }
-const $todoInput = document.querySelector('#writeForm input');
-const $todoList = document.querySelector('#todoList');
-const $doneList = document.querySelector('#doneList');
-const $hidden = document.querySelector('.hidden');
 
 const myTodoList = new TodoListController();
 document
