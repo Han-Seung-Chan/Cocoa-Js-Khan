@@ -2,6 +2,9 @@
   font-family: 'Black Han Sans', sans-serif;
   text-align: center;
 }
+body {
+  height: 100vh;
+}
 body,
 #writeForm input {
   color: #fedc00;
@@ -30,7 +33,7 @@ input:focus {
   font-size: 30px;
 }
 
-#todoList li #TodoButtonO {
+#todoList #TodoButtonO {
   font-size: 19px;
   position: relative;
   bottom: 2px;
@@ -40,7 +43,7 @@ input:focus {
   padding-left: 8px;
   background-color: #fedc00;
 }
-#todoList li #TodoButtonX {
+#todoList #TodoButtonX {
   font-size: 19px;
   position: relative;
   bottom: 3px;
@@ -48,7 +51,7 @@ input:focus {
   margin: 10px;
   background-color: #fedc00;
 }
-#doneList li #DoneButtonX {
+#doneList #DoneButtonX {
   font-size: 19px;
   position: relative;
   bottom: 5px;
@@ -56,7 +59,7 @@ input:focus {
   margin: 10px;
   background-color: #fedc00;
 }
-#doneList li #DoneComebackButton {
+#doneList #DoneComebackButton {
   font-size: 20px;
   position: relative;
   bottom: 3px;
