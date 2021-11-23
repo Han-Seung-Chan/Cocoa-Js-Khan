@@ -34,13 +34,13 @@ input:focus {
 }
 
 #todoList #TodoButtonO {
-  font-size: 19px;
+  font-size: 18px;
   position: relative;
   bottom: 2px;
   left: 30px;
   margin: 10px;
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-right: 6px;
+  padding-left: 6px;
   background-color: #fedc00;
 }
 #todoList #TodoButtonX {
@@ -61,6 +61,16 @@ input:focus {
 }
 #doneList #DoneComebackButton {
   font-size: 20px;
+  position: relative;
+  bottom: 3px;
+  left: 30px;
+  margin: 10px;
+  padding-right: 4px;
+  padding-left: 4px;
+  background-color: #fedc00;
+}
+#modifyButton {
+  font-size: 18px;
   position: relative;
   bottom: 3px;
   left: 30px;
