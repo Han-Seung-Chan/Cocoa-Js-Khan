@@ -69,6 +69,16 @@ input:focus {
   padding-left: 4px;
   background-color: #fedc00;
 }
+#modifyButton {
+  font-size: 18px;
+  position: relative;
+  bottom: 3px;
+  left: 30px;
+  margin: 10px;
+  padding-right: 4px;
+  padding-left: 4px;
+  background-color: #fedc00;
+}
 #doneList li {
   color: #ff0000;
   text-decoration: line-through;
