@@ -88,6 +88,19 @@ class ModelController {
     selectedDoneList.remove();
   };
 
+  modifyTodoList = (e) => {
+    const selectedList = e.target.parentElement;
+    const changeText = prompt('Please enter a list');
+    this.todoListArray.forEach((todo) => {
+      if (todo.id === Number(selectedList.id)) {
+        todo.text = changeText;
+      }
+    });
+    const spanTag = document.createElement('span');
+    spanTag.innerText = changeText;
+    selectedList.childNodes[0].replaceWith(spanTag);
+  };
+
   hiddenClass() {
     if (this.doneTodoArray.length === 0) {
       this.$hidden.style.display = 'none';
@@ -100,10 +113,21 @@ class ViewController {
     this.$todoList = document.querySelector('#todoList');
     this.$doneList = document.querySelector('#doneList');
   }
+
+  printToDo = (newTodo) => {
+    const todoListTag = model.createTodoList(newTodo);
+    this.$todoList.appendChild(todoListTag);
+    model.createSpanTag(newTodo, todoListTag);
+    this.createTodoModifyInputButton(todoListTag);
+    this.createCompleteButton(todoListTag);
+    this.createTodoDeleteButton(todoListTag);
+  };
+
   goTodoList = (doneValue) => {
     const doneListTag = model.createDoneList(doneValue);
     this.$todoList.appendChild(doneListTag);
     model.createDoneSpanTag(doneValue, doneListTag);
+    this.createTodoModifyInputButton(doneListTag);
     this.createCompleteButton(doneListTag);
     this.createTodoDeleteButton(doneListTag);
     model.hiddenClass();
@@ -115,14 +139,6 @@ class ViewController {
     model.createDoneSpanTag(doneValue, doneListTag);
     this.createComebackButton(doneListTag);
     this.createDoneDeleteButton(doneListTag);
-  };
-
-  printToDo = (newTodo) => {
-    const todoListTag = model.createTodoList(newTodo);
-    this.$todoList.appendChild(todoListTag);
-    model.createSpanTag(newTodo, todoListTag);
-    this.createCompleteButton(todoListTag);
-    this.createTodoDeleteButton(todoListTag);
   };
 
   createDoneDeleteButton = (doneListTag) => {
@@ -156,6 +172,14 @@ class ViewController {
     doneListTag.appendChild(comebackButton);
     comebackButton.addEventListener('click', model.comebackDone);
   };
+
+  createTodoModifyInputButton = (listTag) => {
+    const modifyButton = document.createElement('button');
+    modifyButton.id = 'modifyButton';
+    modifyButton.innerText = '✏️';
+    listTag.appendChild(modifyButton);
+    modifyButton.addEventListener('click', model.modifyTodoList);
+  };
 }
 
 const model = new ModelController();
@@ -163,9 +187,3 @@ const view = new ViewController();
 document
   .querySelector('#writeForm')
   .addEventListener('submit', model.submitListHandler.bind(model));
-
-(function printClock() {
-  const clockTag = document.getElementById('clock');
-  clockTag.innerText = new Date().toLocaleString();
-  setTimeout(printClock, 1000);
-})();
