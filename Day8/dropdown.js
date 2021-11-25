@@ -2,14 +2,17 @@ const $tittle = document.querySelector('.tittle');
 const $hidden = document.querySelector('#hidden');
 const $company = document.querySelector('.company');
 
-let time;
+function printDropdown() {
+  let time = null;
 
-$tittle.addEventListener('mouseout', () => {
-  clearTimeout(time);
-});
+  $tittle.addEventListener('mouseover', () => {
+    time = setTimeout(() => {
+      $hidden.style.display = 'block';
+    }, 1000);
+  });
 
-$tittle.addEventListener('mouseover', () => {
-  time = setTimeout(() => {
-    $hidden.style.display = 'block';
-  }, 1000);
-});
+  $tittle.addEventListener('mouseout', () => {
+    clearTimeout(time);
+  });
+}
+printDropdown();
