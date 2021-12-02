@@ -23,7 +23,6 @@ class TimerController {
 
   timerLoop(seconds) {
     clearInterval(this.countdown);
-
     const nowTime = Date.now();
     const finishTime = nowTime + seconds * 1000;
     this.showTimeRemaining(seconds);
@@ -34,6 +33,7 @@ class TimerController {
       this.timeArray.push(secondsRemaining);
       if (secondsRemaining < 0) {
         clearInterval(this.countdown);
+        this.$displayTimer.style.color = 'red';
         return;
       }
       this.showTimeRemaining(secondsRemaining);
@@ -47,6 +47,7 @@ class TimerController {
       remainingSeconds < 10 ? '0' : ''
     }${remainingSeconds}`;
     this.$displayTimer.innerText = timeText;
+    this.$displayTimer.style.color = 'rgb(35, 155, 45)';
     document.title = timeText;
   }
 
@@ -77,6 +78,7 @@ class TimerController {
   }
 
   clearTimer() {
+    this.$displayTimer.style.color = '#f1c164';
     clearInterval(this.countdown);
     this.$displayTimer.innerText = '00:00';
     this.$endTime.innerText = '';
@@ -84,10 +86,12 @@ class TimerController {
   }
 
   stopTimer() {
+    this.$displayTimer.style.color = '#f1c164';
     clearInterval(this.countdown);
   }
 
   restartTimer() {
+    this.$displayTimer.style.color = 'rgb(35, 155, 45)';
     const seconds = this.timeArray[this.timeArray.length - 1];
     myTimer.timerLoop(seconds);
   }
@@ -135,7 +139,7 @@ class TodoListController {
       this.todoListArray[this.todoListArray.length - 1].text
     }
 
-    공부 할 시간 : 
+    공부 할 시간  
     `;
     this.setStudyTimeButton(this.$manyTime);
   };
@@ -237,7 +241,9 @@ class TodoListController {
   paintBar = (studyTime, e) => {
     const coloring = e.target.parentElement.querySelector('.coloring');
     const selectedList = e.target.parentElement;
-    let a = this.todoListArray.filter((list) => list.id == selectedList.id);
+    let selectButtonTag = this.todoListArray.filter(
+      (list) => list.id == selectedList.id
+    );
     const len = Math.ceil((10 / parseInt(studyTime)) * 100);
 
     this.todoListArray = this.todoListArray.map((todo) =>
@@ -249,14 +255,17 @@ class TodoListController {
           }
         : todo
     );
-    coloring.innerText = `${len + Number(a[0]['currentStatus'])}%`;
-    coloring.style.width = `${len + Number(a[0]['currentStatus']) * 3}px`;
+    coloring.innerText = `${
+      len + Number(selectButtonTag[0]['currentStatus'])
+    }%`;
+    coloring.style.width = `${
+      len + Number(selectButtonTag[0]['currentStatus']) * 3
+    }px`;
 
-    if (len + Number(a[0]['currentStatus']) >= 100) {
+    if (len + Number(selectButtonTag[0]['currentStatus']) >= 100) {
       coloring.innerText = `${100}%`;
       coloring.style.width = `${300}px`;
       this.goDoneList(e);
-      e.target.removeEventListener('click', this.paintBar);
     }
   };
 

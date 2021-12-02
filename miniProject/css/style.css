@@ -2,6 +2,7 @@
 * {
   text-align: center;
   font-family: 'Hanna', sans-serif;
+  color: #000;
 }
 body {
   background: #16345a;
@@ -41,30 +42,30 @@ body {
   bottom: 0;
 }
 #menuIcon:checked + label span:nth-child(1) {
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
+  top: 0;
 }
 #menuIcon:checked + label span:nth-child(2) {
-  opacity: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 #menuIcon:checked + label span:nth-child(3) {
-  bottom: 50%;
-  transform: translateY(50%) rotate(-45deg);
+  bottom: 0;
 }
+
 label[for='menuIcon']:before,
 label[for='menuIcon']:after {
   position: absolute;
   display: inline-block;
   transition: all 0.35s;
   opacity: 0;
-  font-size: 45px;
+  font-size: 50px;
   color: #000;
 }
 label[for='menuIcon']:before {
   content: 'M';
   top: 50%;
   transform: translateY(-50%);
-  right: 110%;
+  right: 105%;
   color: #000;
   font-family: 'Staatliches', cursive;
 }
@@ -103,20 +104,22 @@ label[for='menuIcon']:hover:after {
   display: block;
   margin: 10px 0;
   line-height: 1.8em;
-  text-align: right;
   border-radius: 15px;
   width: 300px;
+  height: 35px;
+  text-align: right;
   position: relative;
   z-index: 1;
 }
 .coloring {
-  background: #926767;
+  background: #6e0707;
   display: block;
   margin: 10px 0;
   line-height: 1.8em;
   text-align: left;
   border-radius: 15px;
   width: 0px;
+  height: 35px;
   position: absolute;
   z-index: 2;
   text-align: center;
@@ -221,6 +224,8 @@ ul {
   transition: 0.5s;
 }
 .timeInputText {
+  background: #000;
+  color: #fff;
   width: 300px;
   height: 50px;
   border: none;
@@ -243,8 +248,7 @@ ul {
   background: #ff5722;
 }
 audio::-webkit-media-controls-panel {
-  background-color: #244775;
-  border-radius: 60%;
+  background-color: #8ba0bd;
 }
 .writeForm,
 .writeForm input {
@@ -261,6 +265,12 @@ audio::-webkit-media-controls-panel {
   border-color: dodgerblue;
   box-shadow: 0 0 8px 0 dodgerblue;
   margin-bottom: 20px;
+}
+.writeForm input {
+  height: 50px;
+  font-size: 20px;
+  background: #000;
+  color: #fff;
 }
 .writeForm input:focus {
   border-color: rgb(0, 44, 88);
@@ -292,7 +302,7 @@ audio::-webkit-media-controls-panel {
   margin-bottom: 20px;
 }
 .textSpanTag {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 #TodoButtonO,
@@ -302,14 +312,14 @@ audio::-webkit-media-controls-panel {
 #doneButtonX {
   margin: 3px 3px 3px 3px;
   border: 1px #69552c solid;
-  background-color: #f1c164;
+  background-color: rgb(140, 96, 13);
 }
 #TodoButtonO:hover,
 #TodoButtonX:hover,
 #minutes10Button:hover,
 #timePlayButton:hover,
 #doneButtonX:hover {
-  color: #fff;
+  color: rgb(255, 255, 255);
   box-shadow: 0 80px 0 0 rgba(255, 0, 0, 0.25) inset;
 }
 #TodoButtonO,
