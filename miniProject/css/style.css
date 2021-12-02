@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+* {
+  text-align: center;
+  font-family: 'Hanna', sans-serif;
+}
+body {
+  background: #16345a;
+}
+body {
+  height: 98.3vh;
+}
+#menuIcon {
+  display: none;
+}
+#menuIcon + label {
+  display: block;
+  margin-left: 30px;
+  width: 60px;
+  height: 40px;
+  position: absolute;
+  top: 6%;
+  cursor: pointer;
+}
+#menuIcon + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  border-radius: 30px;
+  background: #000;
+  transition: all 0.35s;
+}
+#menuIcon + label span:nth-child(1) {
+  top: 0;
+}
+#menuIcon + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+#menuIcon + label span:nth-child(3) {
+  bottom: 0;
+}
+#menuIcon:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+#menuIcon:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+#menuIcon:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+label[for='menuIcon']:before,
+label[for='menuIcon']:after {
+  position: absolute;
+  display: inline-block;
+  transition: all 0.35s;
+  opacity: 0;
+  font-size: 45px;
+  color: #000;
+}
+label[for='menuIcon']:before {
+  content: 'M';
+  top: 50%;
+  transform: translateY(-50%);
+  right: 110%;
+  color: #000;
+  font-family: 'Staatliches', cursive;
+}
+label[for='menuIcon']:after {
+  content: 'N  U';
+  top: 50%;
+  transform: translateY(-50%);
+  left: 110%;
+  white-space: nowrap;
+  color: #000;
+  font-family: 'Staatliches', cursive;
+}
+label[for='menuIcon']:hover:before,
+label[for='menuIcon']:hover:after {
+  opacity: 1;
+}
+#menuIcon:checked + label + div {
+  left: 0;
+}
+#menuIcon:checked + label {
+  z-index: 2;
+  left: 330px;
+}
+.sidebar {
+  width: 330px;
+  height: 100%;
+  background: rgb(31, 99, 82);
+  position: fixed;
+  top: 0%;
+  left: -330px;
+  z-index: 1;
+  transition: all 0.35s;
+}
+.barDivTag {
+  background: #ffffff;
+  display: block;
+  margin: 10px 0;
+  line-height: 1.8em;
+  text-align: right;
+  border-radius: 15px;
+  width: 300px;
+  position: relative;
+  z-index: 1;
+}
+.coloring {
+  background: #926767;
+  display: block;
+  margin: 10px 0;
+  line-height: 1.8em;
+  text-align: left;
+  border-radius: 15px;
+  width: 0px;
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+}
+.clock {
+  padding-top: 4%;
+  margin-bottom: 40px;
+  font-size: 60px;
+  font-family: 'Staatliches', cursive;
+}
+.box {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+}
+
+.displayEndTime {
+  font-size: 50px;
+  margin-bottom: 20px;
+  font-family: 'Staatliches', cursive;
+}
+
+#studyMusic {
+  position: fixed;
+  right: 3%;
+  top: 7%;
+}
+#todoList li,
+#doneList li {
+  list-style: none;
+  padding-left: 0px;
+}
+ul {
+  padding-left: 10px;
+  margin-top: 10px;
+}
+#todo,
+#done {
+  margin-bottom: 10px;
+}
+#titleTodo,
+#titleDone {
+  font-size: 30px;
+  padding: 20px;
+  margin: 0px;
+}
+.displayTimer {
+  font-size: 8rem;
+  text-align: center;
+  color: #f1c164;
+  text-shadow: 5px 5px #2d63a7;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  text-decoration: underline;
+}
+.timerButton {
+  font-size: 20px;
+  margin: 10px;
+  margin-top: 50px;
+  width: 120px;
+  height: 60px;
+  background-color: rgb(139, 139, 139);
+  border-radius: 20px;
+  box-shadow: 3px 3px 3px 3px;
+  transition-duration: 0.3s;
+}
+.timerButton:active {
+  margin-left: 3px;
+  margin-top: 3px;
+  box-shadow: none;
+}
+.timerButton:hover {
+  background: rgb(58, 58, 58);
+}
+#restartTimer:active,
+#stopTimer:active,
+#clearTimer:active {
+  margin-left: 3px;
+  margin-top: 3px;
+  box-shadow: none;
+}
+#restartTimer,
+#stopTimer,
+#clearTimer {
+  background-color: rgb(139, 95, 95);
+}
+#restartTimer:hover,
+#stopTimer:hover,
+#clearTimer:hover {
+  background-color: rgb(83, 58, 58);
+}
+
+.timeInputText,
+.timeInputSubmit {
+  position: relative;
+  margin-top: 50px;
+  display: inline-block;
+  font-size: 20px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+.timeInputText {
+  width: 300px;
+  height: 50px;
+  border: none;
+  outline: none;
+  padding: 0 25px;
+  border-radius: 25px 0 0 25px;
+}
+.timeInputSubmit {
+  position: relative;
+  left: -3px;
+  border-radius: 0 25px 25px 0;
+  width: 100px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  background: #f1c164;
+  color: #fff;
+}
+.timeInputSubmit:hover {
+  background: #ff5722;
+}
+audio::-webkit-media-controls-panel {
+  background-color: #244775;
+  border-radius: 60%;
+}
+.writeForm,
+.writeForm input {
+  width: 90%;
+  border: 2px solid #aaa;
+  border-radius: 30px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+.writeForm {
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px 0 dodgerblue;
+  margin-bottom: 20px;
+}
+.writeForm input:focus {
+  border-color: rgb(0, 44, 88);
+  box-shadow: 10px 0 10px 0 rgb(0, 44, 88);
+}
+#doneList li {
+  color: #c58888;
+  text-decoration: line-through;
+}
+.timeButton {
+  position: relative;
+  border: none;
+  display: inline-block;
+  padding: 10px 10px;
+  margin-left: 6px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  background: #f1c164;
+}
+#timePlayButton {
+  padding-top: 1px;
+}
+.manyTime {
+  font-size: 30px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+}
+.textSpanTag {
+  font-size: 20px;
+}
+
+#TodoButtonO,
+#TodoButtonX,
+#minutes10Button,
+#timePlayButton,
+#doneButtonX {
+  margin: 3px 3px 3px 3px;
+  border: 1px #69552c solid;
+  background-color: #f1c164;
+}
+#TodoButtonO:hover,
+#TodoButtonX:hover,
+#minutes10Button:hover,
+#timePlayButton:hover,
+#doneButtonX:hover {
+  color: #fff;
+  box-shadow: 0 80px 0 0 rgba(255, 0, 0, 0.25) inset;
+}
+#TodoButtonO,
+#doneButtonX {
+  margin-left: 15px;
+}

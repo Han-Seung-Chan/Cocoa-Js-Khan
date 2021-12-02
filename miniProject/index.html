@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+<meta charset='UTF-8'>
+<title>Timer</title>
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
+<link rel='stylesheet' href='css/style.css'>
+</head>
+<body>
+  <header class= 'clock'> </header>
+  <div class='displayEndTime'></div>
+  <div class="box">
+  <div class='displayTimer'>00:00</div>
+  <button id="restartTimer" class="timerButton">재생</button>
+  <button id="stopTimer" class="timerButton">정지</button>
+  <button id='clearTimer' class='timerButton'>리셋</button>
+    <section class='timerControls'>
+      <button data-time='600' class='timerButton' >10분 휴식</button>
+      <button data-time='1500' class='timerButton'>25분 공부</button>
+      <button data-time='3000' class='timerButton'>50분 공부</button>
+      
+    </section>
+    <form name='minutesForm' >
+      <input class="timeInputText" type='text' name='minutes' placeholder='얼마나 공부 하시나요?' autocomplete='off'>
+      <input class="timeInputSubmit" type="submit" value="Enter">
+    </form>
+  </div>
+    <input type='checkbox' id='menuIcon'>
+  <label for='menuIcon'>
+    <span></span>
+    <span></span>
+    <span></span>
+    </label>
+    <div class='sidebar'>
+      <div id= writeTodo>
+        <form class= 'writeForm'>
+            <input
+            type ='text'
+            autocomplete='off'
+            maxlength='15'
+            placeholder="오늘 공부 할 것"
+            required
+            />
+        </form>
+        <div class='manyTime'></div>
+    </div>
+<div id = 'todo'>
+    <h3 id = 'titleTodo'>할 일!!</h3>
+    <ul id= 'todoList'></ul>
+</div>
+<div id = 'done'>
+    <h3 id = 'titleDone'>완료:)</h3>
+    <ul id= 'doneList'></ul>
+</div>
+    </div>
+<audio id='studyMusic' src='audio/music.mp3' controls  loop ></audio > 
+  <script src='js/miniProject.js'></script>
+</body>
+</html>
