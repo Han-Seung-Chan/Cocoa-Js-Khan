@@ -134,7 +134,7 @@ label[for='menuIcon']:hover:after {
 }
 .box {
   position: absolute;
-  top: 57%;
+  top: 65%;
   left: 50%;
   padding: 20px;
   transform: translate(-50%, -50%);
@@ -143,6 +143,7 @@ label[for='menuIcon']:hover:after {
 .displayEndTime {
   font-size: 50px;
   margin-bottom: 20px;
+  top: 50%;
 }
 .textTodo {
   font-size: 47px;
@@ -174,7 +175,7 @@ ul {
   margin: 0px;
 }
 .displayTimer {
-  font-size: 8rem;
+  font-size: 10rem;
   text-align: center;
   color: #f1c164;
   text-shadow: 5px 5px #2d63a7;
