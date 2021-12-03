@@ -275,11 +275,14 @@ class TodoListController {
     timePlayButton.innerText = '▶';
     todoListTag.appendChild(timePlayButton);
     timePlayButton.addEventListener('click', () => {
-      this.palyTimer(studyTime);
+      this.palyTimer(studyTime, todoListTag);
     });
   }
-  palyTimer = (studyTime) => {
+  palyTimer = (studyTime, todoListTag) => {
     myTimer.todoTimerStart(parseInt(studyTime));
+    const todoText = todoListTag.childNodes[0].textContent;
+    const todoTextDiv = $('.textTodo');
+    todoTextDiv.innerText = `${todoText}`;
   };
 
   createBarDivTag = (todoListTag, studyTime) => {
